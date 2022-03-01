@@ -18,7 +18,6 @@ public class TigerFormattingModelBuilder implements FormattingModelBuilder
             .after(TigerTypes.COLON).spaces(1)
             .withinPair(TigerTypes.LEFT_BRACE, TigerTypes.RIGHT_BRACE).spaces(1)
             .around(TigerTypes.PLUS).spaces(1)
-            .around(TigerTypes.MINUS).spaces(1)
             .around(TigerTypes.DIVIDES).spaces(1)
             .around(TigerTypes.MULTIPLIES).spaces(1)
             .around(TigerTypes.ASSIGN).spaces(1)

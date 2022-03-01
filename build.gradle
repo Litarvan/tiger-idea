@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.litarvan'
-version '1.0.0'
+version '1.0.1'
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -26,7 +26,7 @@ intellij {
 
 patchPluginXml {
     changeNotes = """
-      None"""
+      v1.0.1: Now indenting 'else' blocs, and not putting spaces after '-' anymore"""
 }
 
 test {

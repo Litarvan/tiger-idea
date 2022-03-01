@@ -50,7 +50,7 @@ public class TigerBlock extends AbstractBlock
                 var type = child.getElementType();
                 if (type == TigerTypes.THEN || type == TigerTypes.ASSIGN || type == TigerTypes.LEFT_PARENTHESIS ||
                     type == TigerTypes.LEFT_BRACE || type == TigerTypes.IN || type == TigerTypes.DO ||
-                    type == TigerTypes.LET || type == TigerTypes.EQUALS)
+                    type == TigerTypes.LET || type == TigerTypes.EQUALS || type == TigerTypes.ELSE)
                 {
                     nextIndent = Indent.getNormalIndent();
                 }
