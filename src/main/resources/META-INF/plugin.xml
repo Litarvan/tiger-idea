@@ -1,0 +1,58 @@
+<idea-plugin>
+    <id>com.litarvan.tiger-idea</id>
+    <name>Tiger IDEA</name>
+    <vendor email="adrien1975@live.fr" url="https://www.litarvan.com/">Adrien 'Litarvan' Navratil</vendor>
+
+    <description><![CDATA[
+    <br>Tiger</br> language support for JetBrains IDEs.
+    Features:
+    <ul>
+      <li>Syntax highlighting</li>
+      <li>Syntax checking</li>
+      <li>Quotes, braces, brackets and parenthesis matching</li>
+      <li>Basic formatting (work in progress)</li>
+    </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Tiger File"
+            implementationClass="com.litarvan.tigeridea.TigFileType"
+            fieldName="INSTANCE"
+            language="Tiger"
+            extensions="tig" />
+        <fileType name="Tiger Declarations"
+            implementationClass="com.litarvan.tigeridea.TihFileType"
+            fieldName="INSTANCE"
+            language="Tiger"
+            extensions="tih" />
+
+        <internalFileTemplate name="Tiger File" />
+        <internalFileTemplate name="Tiger Declarations" />
+
+        <lang.parserDefinition language="Tiger"
+            implementationClass="com.litarvan.tigeridea.TigerParserDefinition" />
+
+        <lang.syntaxHighlighterFactory language="Tiger"
+            implementationClass="com.litarvan.tigeridea.TigerSyntaxHighlighterFactory" />
+        <colorSettingsPage implementation="com.litarvan.tigeridea.TigerColorSettingsPage" />
+
+        <lang.braceMatcher language="Tiger"
+            implementationClass="com.litarvan.tigeridea.TigerBraceMatcher" />
+
+        <lang.quoteHandler language="Tiger"
+            implementationClass="com.litarvan.tigeridea.TigerQuoteHandler" />
+
+        <codeStyleSettingsProvider implementation="com.litarvan.tigeridea.TigerCodeStyleSettingsProvider" />
+        <langCodeStyleSettingsProvider implementation="com.litarvan.tigeridea.TigerLanguageCodeStyleSettingsProvider" />
+
+        <lang.formatter language="Tiger"
+            implementationClass="com.litarvan.tigeridea.TigerFormattingModelBuilder" />
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

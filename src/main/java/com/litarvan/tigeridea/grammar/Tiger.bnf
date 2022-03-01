@@ -1,0 +1,120 @@
+{
+  parserClass="com.litarvan.tigeridea.parser.TigerParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Tiger"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.litarvan.tigeridea.psi"
+  psiImplPackage="com.litarvan.tigeridea.psi.impl"
+
+  elementTypeHolderClass="com.litarvan.tigeridea.psi.TigerTypes"
+  elementTypeClass="com.litarvan.tigeridea.psi.TigerElementType"
+  tokenTypeClass="com.litarvan.tigeridea.psi.TigerTokenType"
+}
+
+program ::=
+    expression
+  | chunks
+  ;
+
+/* === Comments. == */
+// block_comment ::= BLOCK_COMMENT_START (BLOCK_COMMENT_BODY | block_comment)* BLOCK_COMMENT_END ;
+
+/* === Expressions. === */
+expressions ::= [ expression { SEMI_COLON expression }* ] ;
+/* expression ::= */
+expression ::= expression_part operator expression
+               | expression_part ;
+expression_part ::=
+  /* Literals. */
+    NIL
+  | INTEGER
+  | STRING
+
+  /* Array and record creations. */
+  | type_id LEFT_BRACKET expression RIGHT_BRACKET OF expression
+  | type_id LEFT_BRACE [ IDENTIFIER EQUALS expression { COMMA IDENTIFIER EQUALS expression }* ] RIGHT_BRACE
+
+  /* Function call. */
+  | IDENTIFIER LEFT_PARENTHESIS [ expression { COMMA expression }*] RIGHT_PARENTHESIS
+
+  /* Operations. */
+  | MINUS expression
+  // >:( LEFT RECURSION CRINGE
+  /* | expression operator expression */
+  | LEFT_PARENTHESIS expressions RIGHT_PARENTHESIS
+
+  /* Assignment. */
+  | lvalue ASSIGN expression
+
+  /* Variables, field, elements of an array. */
+  | lvalue
+
+  /* Control structures. */
+  | IF expression THEN expression [ELSE expression]
+  | WHILE expression DO expression
+  | FOR IDENTIFIER ASSIGN expression TO expression DO expression
+  | BREAK
+  | LET chunks IN expressions END
+  ;
+
+// LEFT RECURSION CRINGE
+/*
+lvalue =
+    IDENTIFIER
+  (* Record field access. *)
+  | lvalue DOT IDENTIFIER
+  (* Array subscript. *)
+  | lvalue LEFT_BRACKET expression RIGHT_BRACKET
+  ;
+*/
+
+lvalue ::=
+    IDENTIFIER { lvalue_suffix }*
+  ;
+
+lvalue_suffix ::=
+    DOT IDENTIFIER
+  | LEFT_BRACKET expression RIGHT_BRACKET
+  ;
+
+operator ::= PLUS | MINUS | MULTIPLIES | DIVIDES | EQUALS | NOT_EQUALS | GREATER | LOWER | GREATER_EQUAL | LOWER_EQUAL | AND | OR ;
+
+/* === Chunks of declarations. === */
+chunks ::= { chunk }+ ;
+chunk ::=
+    { type_declaration }+   /* tychunk */
+  | { function_declaration }+  /* funchunk */
+  | variable_declaration      /* varchunk */
+
+  /* Importing a set of declarations. */
+  | IMPORT STRING
+  ;
+
+/* Variable declaration. */
+variable_declaration ::= VAR IDENTIFIER [ COLON type_id ] ASSIGN expression ;
+
+/* Type declaration. */
+type_declaration ::= TYPE IDENTIFIER EQUALS type_ref ;
+
+/* Function declaration. */
+function_declaration ::=
+    FUNCTION IDENTIFIER LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS [ COLON type_id ] EQUALS expression
+  | PRIMITIVE IDENTIFIER LEFT_PARENTHESIS parameters RIGHT_PARENTHESIS [ COLON type_id ]
+  ;
+
+
+/* === Types. === */
+type_ref ::=
+   /* Type alias. */
+     type_id
+   /* Record type definition. */
+   | LEFT_BRACE parameters  RIGHT_BRACE
+   /* Array type definition. */
+   | ARRAY OF type_id
+   ;
+
+parameters ::= [ IDENTIFIER COLON type_id { COMMA IDENTIFIER COLON type_id }* ] ;
+type_id ::= IDENTIFIER ;
+
