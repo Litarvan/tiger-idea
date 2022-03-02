@@ -4,6 +4,10 @@ Tiger language plugin for IntelliJ-based IDEs (including CLion).
 
 [![JetBrains plugins](https://img.shields.io/jetbrains/plugin/v/18707-tiger-idea.svg)](https://plugins.jetbrains.com/plugin/18707-tiger-idea)
 
+## [From the marketplace](https://plugins.jetbrains.com/plugin/18707-tiger-idea)
+
+Search "Tiger" in the Preferences => Plugins section from any JetBrains IDE, and click Install.
+
 ## Manual installation
 
 Download [the plugin jar file](https://github.com/Litarvan/tiger-idea/releases/download/v1.0.3/tiger-idea-1.0.3.jar),
