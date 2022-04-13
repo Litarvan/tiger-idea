@@ -10,7 +10,7 @@ Search "Tiger" in the Preferences => Plugins section from any JetBrains IDE, and
 
 ## Manual installation
 
-Download [the plugin jar file](https://github.com/Litarvan/tiger-idea/releases/download/v1.0.3/tiger-idea-1.0.3.jar),
+Download [the plugin jar file](https://github.com/Litarvan/tiger-idea/releases/download/v1.0.4/tiger-idea-1.0.4.jar),
 get in IntelliJ/CLion 'Preferences' menu, in the 'Plugins' section, then select the cog icon on the top and click on
 'Install Plugin from Disk...'. Select the jar file, and the plugin should have been installed.
 
