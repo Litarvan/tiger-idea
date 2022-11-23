@@ -1,10 +1,10 @@
 plugins {
-    id 'org.jetbrains.intellij' version '1.5.2'
+    id 'org.jetbrains.intellij' version '1.10.0'
     id 'java'
 }
 
 group 'com.litarvan'
-version '1.0.4'
+version '1.0.7'
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -16,12 +16,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
 }
 
 intellij {
-    version = '2022.1'
+    version = '2022.2'
 }
 
 patchPluginXml {
@@ -31,8 +31,12 @@ patchPluginXml {
         <li>v1.0.2: Decreased minimum IDE version required</li>
         <li>v1.0.3: Fixed plugin description first line</li>
         <li>v1.0.4: Added 2022.1 IDE support</li>
+        <li>v1.0.5: Added 2022.2 IDE support</li>
+        <li>v1.0.6: Added 2022.3+ IDE support</li>
+        <li>v1.0.7: Renamed plugin</li>
       </ul>"""
     sinceBuild = '210.1.1'
+    untilBuild = ''
 }
 
 test {

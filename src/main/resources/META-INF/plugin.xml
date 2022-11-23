@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.litarvan.tiger-idea</id>
-    <name>Tiger IDEA</name>
+    <name>Tiger</name>
     <vendor email="adrien1975@live.fr" url="https://www.litarvan.com/">Adrien 'Litarvan' Navratil</vendor>
 
     <description><![CDATA[
